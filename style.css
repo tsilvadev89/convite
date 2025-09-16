@@ -145,7 +145,7 @@ body {
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop')
+  background: url('https://raw.githubusercontent.com/tsilvadev89/convite/refs/heads/main/src/img/Casal.jpeg')
               center/cover no-repeat;
   filter: brightness(.9);
   z-index: 0;
@@ -229,7 +229,7 @@ body {
 }
 .page-links .hero-bg {
   position: absolute; inset: 0;
-  background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop')
+  background: url('https://raw.githubusercontent.com/tsilvadev89/convite/refs/heads/main/src/img/Casal.jpeg')
               center/cover no-repeat;
   filter: brightness(.9);
   z-index: 0;
