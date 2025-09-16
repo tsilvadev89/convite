@@ -17,12 +17,12 @@
   --bg-hero-filter: brightness(.9);
 
   /* ==== Página 3 (Links) ==== */
-  --bg-links-img: url('https://raw.githubusercontent.com/tsilvadev89/convite/refs/heads/main/src/img/Familia.jpeg');
+  --bg-links-img: url('https://raw.githubusercontent.com/tsilvadev89/convite/refs/heads/main/src/img/CasalBjo.jpeg');
   --bg-links-pos: center;
   --bg-links-scale-desktop: 100%;  /* ajuste fino desktop */
-  --bg-links-scale-mobile: 130%;   /* ajuste fino mobile */
+  --bg-links-scale-mobile: 200%;   /* ajuste fino mobile */
   --bg-links-repeat: no-repeat;
-  --bg-links-filter: brightness(.9);
+  --bg-links-filter: brightness(.8);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
