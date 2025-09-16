@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Convite Viviane & Thiago</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- PÁGINA 1: ENVELOPE -->
+  <section id="page1" class="page page-portal active" aria-label="Abertura do convite">
+    <div class="parallax" aria-hidden="true">
+      <div class="layer l1" data-depth="0.04"></div>
+      <div class="layer l2" data-depth="0.08"></div>
+      <div class="layer l3" data-depth="0.12"></div>
+    </div>
+
+    <div class="envelope-wrapper">
+      <h1 class="portal-title">Viviane & Thiago</h1>
+      <div class="envelope3d" id="envelope" role="button" aria-label="Abrir carta">
+        <div class="pocket"></div>
+        <div class="flap"></div>
+        <div class="seal"><span>♥</span></div>
+        <div class="letter"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÁGINA 2: GLASS -->
+  <section id="page2" class="page page-hero" aria-label="Detalhes principais" hidden>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="glass-card">
+<!--       <h2 id="l1">Com a bênção de Deus</h2> -->
+      <h1 id="l2">Viviane</h1>
+      <h1 id="l2">&</h1>
+      <h1 id="l2">Thiago</h1>
+
+      <p id="l3">Convidam para a celebração do seu casamento.</p>
+      <!-- <p id="l4" class="meta"><strong>15 de novembro, às 18h</strong> — Espaço D’Pirozzi</p> -->
+      <button id="cta2" class="btn" type="button" onclick="goTo(3)">Ver detalhes</button>
+    </div>
+  </section>
+
+  <!-- PÁGINA 3: LINKS -->
+  <section id="page3" class="page page-links" aria-label="Links úteis" hidden>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="glass-card links-card">
+      <h1>Detalhes do Casamento</h1>
+      <div class="links-grid">
+
+        <a class="link-card" href="https://www.casamentos.com.br/web/W11790112/confirmeasuapresenca-3" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M7 2h2v3H7V2zm8 0h2v3h-2V2zM4 7h16v13H4V7zm2 2v9h12V9H6z"/></svg>
+          <span>Confirme sua presença</span>
+        </a>
+
+        <a class="link-card" href="https://maps.app.goo.gl/FGwLJ4MZzUUVpHUK9" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+          <span>Localização</span>
+        </a>
+
+        <a class="link-card" href="http://bit.ly/2uq2ca4" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 6h-2.18A3 3 0 0 0 12 5.1 3 3 0 0 0 6.18 6H4a2 2 0 0 0-2 2v2h20V8a2 2 0 0 0-2-2zM2 12v8a2 2 0 0 0 2 2h7v-10H2zm11 0v10h7a2 2 0 0 0 2-2v-8h-9zM8 6a1.5 1.5 0 1 1 0-3c1.8 0 3 1.5 3 3H8zm8 0h-3c0-1.5 1.2-3 3-3a1.5 1.5 0 0 1 0 3z"/></svg>
+          <span>Lista de presentes</span>
+        </a>
+
+        <a class="link-card" href="https://www.casamentos.com.br/web/W11790112/livrodevisitas-5" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 3H3v18l4-4h14V3z"/></svg>
+          <span>Recado para os noivos</span>
+        </a>
+
+        <a class="link-card" href="https://wa.me/5512988064111?text=Querida%20Noiva%2C%20gostaria%20de%20obter%20detalhes%20sobre%20seu%20casamento" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a9.9 9.9 0 0 0 1.46 5.2L2 22l4.9-1.44A10 10 0 1 0 12 2zm5.1 14.2c-.22.63-1.27 1.2-1.76 1.23-.48.04-1.08.06-1.75-.11a8.1 8.1 0 0 1-3.54-2.02 10.3 10.3 0 0 1-2.1-2.58c-.22-.38-.5-.9-.5-1.54 0-.65.32-.97.44-1.1.12-.13.27-.16.36-.16h.26c.08 0 .2-.03.3.23.11.27.36.94.39 1.01.03.07.05.16 0 .26-.05.1-.08.16-.17.26-.08.1-.18.22-.26.29-.08.07-.17.15-.07.3.1.15.44.73.95 1.17.66.58 1.22.76 1.4.85.18.09.28.08.39-.05.11-.13.45-.52.57-.7.12-.18.23-.15.39-.09.16.06 1.03.48 1.2.56.18.08.29.13.33.2.04.07.04.64-.18 1.27z"/></svg>
+          <span>Fale com a Noiva</span>
+        </a>
+
+        <a class="link-card" href="https://wa.me/5512981043227?text=Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20seu%20casamento.%20" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a9.9 9.9 0 0 0 1.46 5.2L2 22l4.9-1.44A10 10 0 1 0 12 2zm5.1 14.2c-.22.63-1.27 1.2-1.76 1.23-.48.04-1.08.06-1.75-.11a8.1 8.1 0 0 1-3.54-2.02 10.3 10.3 0 0 1-2.1-2.58c-.22-.38-.5-.9-.5-1.54 0-.65.32-.97.44-1.1.12-.13.27-.16.36-.16h.26c.08 0 .2-.03.3.23.11.27.36.94.39 1.01.03.07.05.16 0 .26-.05.1-.08.16-.17.26-.08.1-.18.22-.26.29-.08.07-.17.15-.07.3.1.15.44.73.95 1.17.66.58 1.22.76 1.4.85.18.09.28.08.39-.05.11-.13.45-.52.57-.7.12-.18.23-.15.39-.09.16.06 1.03.48 1.2.56.18.08.29.13.33.2.04.07.04.64-.18 1.27z"/></svg>
+          <span>Fale com o Noivo</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

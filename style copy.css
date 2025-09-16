@@ -1,0 +1,272 @@
+:root {
+  --paper: #F6F1E7;
+  --paper-2: #F2ECE1;
+  --ink: #3D2B1F;
+  --cocoa: #6A4A3C;
+  --gold: #d9b794;
+  --gold-2: #B68A2C;
+  --glass: #FFFFFF26;
+  --glass-strong: #FFFFFF40;
+
+  /* ==== Página 2 (Hero) ==== */
+  --bg-hero-img: url('https://raw.githubusercontent.com/tsilvadev89/convite/refs/heads/main/src/img/Casal.jpeg');
+  --bg-hero-pos: center;
+  --bg-hero-scale-desktop: 80%;   /* ajuste fino desktop */
+  --bg-hero-scale-mobile: 160%;   /* ajuste fino mobile */
+  --bg-hero-repeat: no-repeat;
+  --bg-hero-filter: brightness(.9);
+
+  /* ==== Página 3 (Links) ==== */
+  --bg-links-img: url('https://raw.githubusercontent.com/tsilvadev89/convite/refs/heads/main/src/img/CasalBjo.jpeg');
+  --bg-links-pos: center;
+  --bg-links-scale-desktop: 100%;  /* ajuste fino desktop */
+  --bg-links-scale-mobile: 160%;   /* ajuste fino mobile */
+  --bg-links-repeat: no-repeat;
+  --bg-links-filter: brightness(.8);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Playfair Display', serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================= Base de páginas + transições ================= */
+.page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 20px;
+  text-align: center;
+
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.page.active {
+  opacity: 1;
+  transform: scale(1);
+}
+[hidden] { display: none !important; }
+
+/* ================= Página 1: Portal + Envelope ================= */
+.page-portal {
+  background:
+    radial-gradient(1200px 600px at 50% 30%, #ffffff77, transparent 60%),
+    linear-gradient(180deg, var(--paper), var(--paper-2));
+}
+
+/* Parallax suave */
+.parallax .layer {
+  position: absolute;
+  inset: -10%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+}
+.l1 {
+  background:
+    radial-gradient(800px 400px at 50% 40%, #ffffff55, transparent 60%),
+    radial-gradient(500px 300px at 20% 70%, #d9c8a820, transparent 60%);
+}
+.l2 {
+  background:
+    radial-gradient(900px 500px at 70% 20%, #d4af3730, transparent 65%),
+    radial-gradient(600px 350px at 30% 30%, #8b6b4a14, transparent 65%);
+}
+.l3 {
+  background:
+    radial-gradient(600px 300px at 50% 80%, #ffffff1f, transparent 60%),
+    repeating-radial-gradient(circle at 50% 50%, #00000007 0 2px, transparent 3px 6px);
+}
+
+/* ================= Envelope ================= */
+.envelope-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.portal-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.2rem;
+  color: var(--cocoa);
+  text-shadow: 0 2px 6px #fff8;
+}
+
+.envelope3d {
+  width: 420px;
+  height: 280px;
+  max-width: 92vw;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.12));
+  transform-style: preserve-3d;
+}
+.envelope3d .pocket {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #ffffff, #f1e9dc);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+}
+.envelope3d .flap {
+  position: absolute; top: 0; left: 0; right: 0; height: 54%;
+  background: linear-gradient(180deg, var(--gold), #e7d4a8);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 1s ease-in-out;
+  border-top-left-radius: 10px; border-top-right-radius: 10px;
+  z-index: 3;
+}
+.envelope3d .seal {
+  position: absolute; top: 44%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px; height: 70px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #b2892a, #8e6f1f);
+  border: 2px solid #f6e7b8;
+  display: grid; place-items: center;
+  color: #f9f4e6; font-weight: 700;
+  z-index: 4;
+  transition: transform .5s ease, opacity .5s ease;
+}
+.envelope3d .letter {
+  position: absolute; inset: 8px;
+  background: var(--paper);
+  border-radius: 8px;
+  z-index: 2;
+}
+.envelope3d.open .flap { transform: rotateX(-180deg); }
+.envelope3d.open .seal { opacity: 0; transform: translate(-50%, -50%) scale(.6); }
+
+/* Mobile envelope */
+@media (max-width: 600px) {
+  .envelope3d { width: 92vw; height: 200px; }
+  .portal-title { font-size: 2.4rem; }
+}
+
+/* ================= Página 2: Hero + Glass ================= */
+.page-hero { background: var(--paper-2); }
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: var(--bg-hero-img);
+  background-position: var(--bg-hero-pos);
+  background-size: var(--bg-hero-scale-desktop);
+  background-repeat: var(--bg-hero-repeat);
+  filter: var(--bg-hero-filter);
+  z-index: 0;
+}
+
+/* Glass Card */
+.glass-card {
+  position: relative; z-index: 1;
+  max-width: 850px;
+  width: min(95%, 850px);
+  padding: 16px 16px;
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.glass-card h2 { font-size: 1.6rem; margin-bottom: 12px; color: var(--cocoa); }
+.glass-card h1 { font-family: 'Great Vibes', cursive; font-size: 3.2rem; color: var(--ink); }
+.glass-card p { font-size: 1.3rem; line-height: 1.6; color: var(--ink); }
+.glass-card .meta { margin-top: 12px; font-size: 1.2rem; font-weight: 700; color: var(--cocoa); }
+
+/* Botão */
+.btn {
+  margin-top: 20px;
+  padding: 12px 22px;
+  border-radius: 28px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .25s ease, transform .25s ease;
+}
+.btn:hover { background: var(--gold-2); transform: translateY(-2px); }
+
+/* ================= Página 3: Links ================= */
+.page-links { flex-direction: column; }
+.page-links .hero-bg {
+  position: absolute; inset: 0;
+  background-image: var(--bg-links-img);
+  background-position: var(--bg-links-pos);
+  background-size: var(--bg-links-scale-desktop);
+  background-repeat: var(--bg-links-repeat);
+  filter: var(--bg-links-filter);
+  z-index: 0;
+}
+
+.links-card {
+  position: relative; z-index: 1;
+  width: min(95%, 900px);
+  margin-top: 20px;
+  padding: 40px 30px;
+  background: rgba(255,255,255,0.30);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+}
+.links-card h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  color: var(--cocoa);
+  margin-bottom: 16px;
+}
+
+/* Grid e Links */
+.links-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  text-decoration: none;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  border-radius: 16px;
+  transition: transform .25s ease, background .25s ease;
+}
+.link-card:hover { background: rgba(0,0,0,0.55); transform: translateY(-6px); }
+.icon { width: 56px; height: 56px; fill: #FFD700; }
+
+/* ================= Responsividade ================= */
+@media (max-width: 768px) {
+  .hero-bg {
+    background-size: var(--bg-hero-scale-mobile);
+  }
+  .page-links .hero-bg {
+    background-size: var(--bg-links-scale-mobile);
+  }
+
+  .glass-card {
+    width: 94%;
+    padding: 24px 20px;
+  }
+  .glass-card h1 { font-size: 2.5rem; }
+  .glass-card h2 { font-size: 1.3rem; }
+  .glass-card p  { font-size: 1.1rem; }
+}
