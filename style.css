@@ -1,0 +1,309 @@
+:root {
+  --paper: #F6F1E7;
+  --paper-2: #F2ECE1;
+  --ink: #3D2B1F;
+  --cocoa: #6A4A3C;
+  --gold: #d9b794;
+  --gold-2: #B68A2C;
+  --glass: #FFFFFF26;        /* ~15% */
+  --glass-strong: #FFFFFF40; /* ~25% */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Playfair Display', serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================= Base de páginas + transições ================= */
+.page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 20px;
+  text-align: center;
+
+  /* transição de entrada/saída */
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.page.active {
+  opacity: 1;
+  transform: scale(1);
+}
+[hidden] { display: none !important; }
+
+/* ================= Página 1: Portal + Envelope ================= */
+.page-portal {
+  background:
+    radial-gradient(1200px 600px at 50% 30%, #ffffff77, transparent 60%),
+    linear-gradient(180deg, var(--paper), var(--paper-2));
+}
+
+/* Parallax suave (tons bege/dourado) */
+.parallax .layer {
+  position: absolute;
+  inset: -10%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+}
+.l1 {
+  background:
+    radial-gradient(800px 400px at 50% 40%, #ffffff55, transparent 60%),
+    radial-gradient(500px 300px at 20% 70%, #d9c8a820, transparent 60%);
+}
+.l2 {
+  background:
+    radial-gradient(900px 500px at 70% 20%, #d4af3730, transparent 65%),
+    radial-gradient(600px 350px at 30% 30%, #8b6b4a14, transparent 65%);
+}
+.l3 {
+  background:
+    radial-gradient(600px 300px at 50% 80%, #ffffff1f, transparent 60%),
+    repeating-radial-gradient(circle at 50% 50%, #00000007 0 2px, transparent 3px 6px);
+}
+
+/* Título (nomes) acima do envelope */
+.envelope-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.portal-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.2rem;
+  color: var(--cocoa);
+  text-shadow: 0 2px 6px #fff8;
+}
+
+/* Envelope 3D responsivo */
+.envelope3d {
+  width: 420px;
+  height: 280px;
+  max-width: 92vw;
+  position: relative;
+  cursor: pointer;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.12));
+  transform-style: preserve-3d;
+}
+.envelope3d .pocket {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #ffffff, #f1e9dc);
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+}
+.envelope3d .flap {
+  position: absolute; top: 0; left: 0; right: 0; height: 54%;
+  background: linear-gradient(180deg, var(--gold), #e7d4a8);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 1s ease-in-out;
+  border-top-left-radius: 10px; border-top-right-radius: 10px;
+  z-index: 3;
+}
+.envelope3d .seal {
+  position: absolute; top: 44%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px; height: 70px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #b2892a, #8e6f1f);
+  border: 2px solid #f6e7b8;
+  display: grid; place-items: center;
+  color: #f9f4e6; font-weight: 700;
+  z-index: 4;
+  transition: transform .5s ease, opacity .5s ease;
+}
+.envelope3d .letter {
+  position: absolute; inset: 8px;
+  background: var(--paper);
+  border-radius: 8px;
+  z-index: 2;
+}
+.envelope3d.open .flap { transform: rotateX(-180deg); }
+.envelope3d.open .seal { opacity: 0; transform: translate(-50%, -50%) scale(.6); }
+
+/* Envelope - mobile */
+@media (max-width: 600px) {
+  .envelope3d { width: 92vw; height: 200px; }
+  .portal-title { font-size: 2.4rem; }
+}
+
+/* ================= Página 2: Hero + Glass ================= */
+.page-hero {
+  background: var(--paper-2);
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop')
+              center/cover no-repeat;
+  filter: brightness(.9);
+  z-index: 0;
+}
+
+/* Card glass com maior legibilidade e altura */
+.glass-card {
+  position: relative; z-index: 1;
+  max-width: 850px;
+  width: min(95%, 850px);
+  min-height: 65vh;                  /* altura maior */
+  padding: 60px 40px;                /* mais respiro */
+  background: rgba(255,255,255,0.25);/* menos transparente */
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Tipografia mais escura e maior para leitura */
+.glass-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: var(--cocoa);
+  text-shadow: 0 1px 2px #fff8;
+}
+.glass-card h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.2rem;
+  color: var(--ink);
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px #fff9;
+}
+.glass-card p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--ink);
+  text-shadow: 0 1px 2px #fff;
+}
+.glass-card .meta {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  color: var(--cocoa);
+  font-weight: 700;
+}
+
+/* Botão */
+.btn {
+  margin-top: 20px;
+  padding: 12px 22px;
+  border-radius: 28px;
+  background: var(--gold);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .25s ease, transform .25s ease;
+}
+.btn:hover { background: var(--gold-2); transform: translateY(-2px); }
+
+/* Página 2 - mobile */
+@media (max-width: 600px) {
+  .glass-card {
+    width: 94%;
+    min-height: 78vh;              /* ocupa mais altura no celular */
+    padding: 36px 22px;
+  }
+  .glass-card h1 { font-size: 2.5rem; }
+  .glass-card h2 { font-size: 1.3rem; }
+  .glass-card p  { font-size: 1.1rem; }
+}
+
+/* ================= Página 3: Links com mesmo fundo e glass ================= */
+.page-links {
+  flex-direction: column;
+}
+.page-links .hero-bg {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop')
+              center/cover no-repeat;
+  filter: brightness(.9);
+  z-index: 0;
+}
+
+/* Container dos links com o mesmo glass do hero */
+.links-card {
+  position: relative; z-index: 1;
+  width: min(95%, 900px);
+  margin-top: 20px;
+  padding: 40px 30px;
+  background: rgba(255,255,255,0.30); /* mais sólido que a pág.2 */
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+}
+.links-card h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.8rem;
+  color: var(--cocoa);
+  margin-bottom: 16px;
+}
+
+/* Grid de links */
+.links-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Cards individuais com contraste alto */
+.link-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  padding: 20px;
+  background: rgba(0,0,0,0.35);         /* fundo escuro para legibilidade */
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 16px;
+  color: #fff;                           /* texto claro */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,.15);
+}
+.link-card:hover {
+  transform: translateY(-6px);
+  background: rgba(0,0,0,0.55);
+  box-shadow: 0 14px 28px rgba(0,0,0,.22);
+}
+
+/* Ícones dourados com sombra */
+.icon {
+  width: 56px;
+  height: 56px;
+  fill: #ea6445;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.6));
+}
+.link-card span { font-weight: 700; letter-spacing: .2px; }
+
+/* Página 3 - mobile */
+@media (max-width: 600px) {
+  .links-card { width: 94%; padding: 32px 20px; }
+  .link-card span { font-size: .95rem; }
+}
+
+/* ================= Acessibilidade: reduz animações ================= */
+@media (prefers-reduced-motion: reduce) {
+  .page { transition: none !important; }
+  .envelope3d .flap { transition: none !important; }
+  .link-card, .btn { transition: none !important; }
+}
