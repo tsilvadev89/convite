@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Convite Viviane & Thiago</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: #f8f5f0;
+      color: #3d2b1f;
+      overflow-x: hidden;
+    }
+
+    .page {
+      display: none;
+      min-height: 100vh;
+      width: 100%;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+    }
+    .active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      font-family: 'Great Vibes', cursive;
+      margin: 20px 0;
+      color: #7a3e2d;
+    }
+    h2, p {
+      font-size: 1.2em;
+      color: #5c4634;
+      opacity: 0; /* começa invisível para animação cadenciada */
+    }
+    button {
+      margin-top: 30px;
+      background: #d4af37;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+    }
+    button:hover { background: #b68a2c; transform: scale(1.05); }
+
+    /* Envelope 3D */
+    .envelope-wrapper {
+      perspective: 1000px;
+    }
+    .envelope {
+      width: 300px;
+      height: 200px;
+      position: relative;
+      background: #fdf9f3;
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      overflow: hidden;
+    }
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: #d4af37;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transition: transform 1s ease-in-out;
+      z-index: 2;
+    }
+    .letter {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+      font-family: 'Playfair Display', serif;
+      transition: top 1s ease-in-out;
+      z-index: 1;
+    }
+    .envelope.open .flap { transform: rotateX(-180deg); }
+    .envelope.open .letter { top: 0; }
+
+    /* Página 3 - Cards */
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .link-card {
+      background: #fff;
+      border: 1px solid #e6ddc6;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      color: #6a4a3c;
+      text-decoration: none;
+      opacity: 0;
+    }
+    .link-card img {
+      width: 60px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .link-card:hover img { transform: scale(1.1); }
+    .link-card span { display: block; margin-top: 10px; font-weight: bold; }
+    .link-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+      background: #fdfaf5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Página 1: Envelope -->
+  <div class="page active" id="page1">
+    <div class="envelope-wrapper">
+      <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="letter">
+          <p style="margin-top:60px; font-size:1.2em; color:#7a3e2d;">Clique para abrir</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Página 2: Detalhes com texto cadenciado -->
+  <div class="page" id="page2">
+    <h2 id="line1">Com a bênção de Deus</h2>
+    <h1 id="line2">Viviane & Thiago</h1>
+    <p id="line3">Convidam para a celebração do seu casamento</p>
+    <p id="line4"><strong>15 de novembro, às 18h</strong></p>
+    <p id="line5">No Espaço D’Pirozzi</p>
+    <button id="btnPage2" onclick="nextPage(3)">Ver detalhes</button>
+  </div>
+
+  <!-- Página 3: Links ilustrativos -->
+  <div class="page" id="page3">
+    <h1 id="title3">Detalhes do Casamento</h1>
+    <div class="links">
+      <a class="link-card" href="https://www.casamentos.com.br/web/W11790112/confirmeasuapresenca-3" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/100/6a4a3c/calendar.png" alt="Confirme presença">
+        <span>Confirme sua presença</span>
+      </a>
+      <a class="link-card" href="https://maps.app.goo.gl/FGwLJ4MZzUUVpHUK9" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/100/6a4a3c/map.png" alt="Localização">
+        <span>Localização</span>
+      </a>
+      <a class="link-card" href="http://bit.ly/2uq2ca4" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/100/6a4a3c/gift.png" alt="Lista de presentes">
+        <span>Lista de presentes</span>
+      </a>
+      <a class="link-card" href="https://www.casamentos.com.br/web/W11790112/livrodevisitas-5" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/100/6a4a3c/book.png" alt="Recado para os noivos">
+        <span>Recado para os noivos</span>
+      </a>
+      <a class="link-card" href="https://wa.me/5512988064111?text=Querida%20Noiva..." target="_blank">
+        <img src="https://img.icons8.com/ios-filled/100/6a4a3c/whatsapp.png" alt="Fale com a noiva">
+        <span>Fale com a Noiva</span>
+      </a>
+      <a class="link-card" href="https://wa.me/5512981043227?text=Gostaria%20de%20obter..." target="_blank">
+        <img src="https://img.icons8.com/ios-filled/100/6a4a3c/whatsapp.png" alt="Fale com o noivo">
+        <span>Fale com o Noivo</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Envelope -> abre e vai para página 2
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('open');
+      setTimeout(() => nextPage(2), 1500);
+    });
+
+    // Controle de páginas
+    function nextPage(num) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page' + num).classList.add('active');
+
+      // animação cadenciada da página 2
+      if(num === 2) {
+        gsap.to("#line1", {opacity:1, y:0, duration:1, delay:0.3});
+        gsap.to("#line2", {opacity:1, y:0, duration:1, delay:1});
+        gsap.to("#line3", {opacity:1, y:0, duration:1, delay:1.8});
+        gsap.to("#line4", {opacity:1, y:0, duration:1, delay:2.6});
+        gsap.to("#line5", {opacity:1, y:0, duration:1, delay:3.4});
+        gsap.to("#btnPage2", {opacity:1, y:0, duration:1, delay:4.2});
+      }
+      //teste
+      // animação dos links da página 3
+      if(num === 3) {
+        gsap.to("#title3", {opacity:1, y:0, duration:1});
+        gsap.to(".link-card", {
+          opacity: 1, 
+          stagger: 0.3,
+          y: 0,
+          duration: 1,
+          delay: 0.5
+        });
+      }
+    }
+  </script>
+</body>
+</html>
