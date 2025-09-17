@@ -6,14 +6,14 @@
   --paper: #FDFBF7;
   --paper-2: #F6F1E7;
   --ink: #3D2B1F;
-  --cocoa: #6A4A3C;
+  --cocoa: #553324;
   --gold: #D6B98F;
   --gold-2: #B9965E;
   --glass: rgba(255, 255, 255, 0.082);
 
   /* Círculos da Página 1 */
-  --portal-circles-opacity: .18;
-  --portal-circles-speed: 26s;
+  --portal-circles-opacity: .2;
+  --portal-circles-speed: 22s;
 
   /* ===== Fundo da Página 2 (config dinâmicas) ===== */
   --bg-hero-img: url('./src/img/Casal.jpeg');      /* troque aqui a foto */
@@ -21,11 +21,11 @@
 
   /* Valores base (desktop) */
   --bg-hero-size: 110%;                  /* zoom */
-  --bg-hero-pos: top;                 /* posição */
+  --bg-hero-pos: top;                    /* posição */
 
   /* Overlay claro sobre a foto (para contraste) */
   --bg-overlay-from: rgba(15, 14, 14, 0.92);
-  --bg-overlay-to:   rgba(255,255,255,.70);
+  --bg-overlay-to:   rgba(169, 166, 166, 0.7);
 
   /* Alturas do card */
   --card-height-desktop: 75vh;
@@ -83,13 +83,30 @@ body{
 .page-portal::before{
   content:""; position:absolute; inset:0;
   background: repeating-radial-gradient(circle at center,
-              rgba(0,0,0,0.05) 0px,
-              rgba(0,0,0,0.05) 1px,
-              transparent 2px);
+              rgba(0,0,0,0.08) 0px,
+              rgba(0,0,0,0.08) 1px,
+              transparent 3px);
   opacity: var(--portal-circles-opacity);
   animation: ripple var(--portal-circles-speed) linear infinite;
 }
 @keyframes ripple{ from{transform:scale(1);} to{transform:scale(1.35);} }
+
+/* Pulso dourado (onda) */
+.pulse-circle{
+  position:absolute;
+  width:24px; height:24px;
+  border-radius:50%;
+  background: radial-gradient(circle, var(--gold-2) 0%, transparent 70%);
+  pointer-events:none;
+  transform: translate(-50%,-50%) scale(0);
+  opacity:0.7;
+  animation: pulseAnim 1.2s ease-out forwards;
+}
+@keyframes pulseAnim{
+  0%   { transform:translate(-50%,-50%) scale(0.3); opacity:0.6; }
+  70%  { transform:translate(-50%,-50%) scale(3.5); opacity:0.3; }
+  100% { transform:translate(-50%,-50%) scale(5); opacity:0; }
+}
 
 .envelope-wrapper{
   display:flex; flex-direction:column; align-items:center; gap:22px;
@@ -116,12 +133,22 @@ body{
   transform-origin: top center; transition:transform 1s ease-in-out;
   border-top-left-radius:10px; border-top-right-radius:10px; z-index:3;
 }
+/* Selo com coração pulsante */
 .envelope3d .seal{
   position:absolute; top:44%; left:50%; transform:translate(-50%,-50%);
   width:72px; height:72px; border-radius:50%;
   background:radial-gradient(circle at 35% 35%,#b3873c,#8e6f1f);
   border:2px solid #f6e7b8; color:#fff; display:grid; place-items:center; z-index:4;
+  animation: heartbeat 1.8s ease-in-out infinite;
 }
+.envelope3d .seal i{ font-size:1.6rem; color:#fff; }
+@keyframes heartbeat {
+  0%,100%{ transform:translate(-50%,-50%) scale(1); }
+  25%{ transform:translate(-50%,-50%) scale(1.25); }
+  50%{ transform:translate(-50%,-50%) scale(0.9); }
+  75%{ transform:translate(-50%,-50%) scale(1.15); }
+}
+
 .envelope3d .letter{ position:absolute; inset:8px; background:var(--paper); border-radius:8px; z-index:2; }
 .envelope3d.open .flap{ transform:rotateX(-180deg); }
 .envelope3d.open .seal{ opacity:0; transform:translate(-50%,-50%) scale(.65); }
@@ -228,6 +255,22 @@ body{
   box-shadow:0 8px 16px rgba(0,0,0,.08);
 }
 .link-btn i{ font-size:1.2rem; color: var(--gold-2); }
+
+/* ================= Chuva de corações (Bootstrap Icons) ================= */
+.heart{
+  position: fixed;
+  top:-10px;
+  pointer-events:none;
+  animation: fall linear forwards;
+  z-index:9999;
+}
+
+@keyframes fall{
+  to{
+    transform: translateY(110vh) rotate(360deg);
+    opacity:0;
+  }
+}
 
 /* ===== Acessibilidade: reduzir movimento ===== */
 @media (prefers-reduced-motion: reduce){

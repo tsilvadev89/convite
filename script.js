@@ -58,5 +58,58 @@ if(btnBack && flipInner){
   btnBack.addEventListener('click', ()=> flipInner.classList.remove('flipped'));
 }
 
+// Pulso dourado automático a cada 3s na página 1
+let pulseTimer = setInterval(()=>{
+  const page1 = document.querySelector('#page1');
+  const env = document.querySelector('#envelope');
+  if(page1?.classList.contains('active') && !env.classList.contains('open')){
+    const rect = page1.getBoundingClientRect();
+    createPulse(rect.width/2, rect.height/2);
+  }
+},3000);
+
+// Pulso no clique
+document.querySelector('#page1').addEventListener('click',(e)=>{
+  createPulse(e.clientX, e.clientY);
+});
+
+// Função que cria pulso
+function createPulse(x,y){
+  const pulse=document.createElement('div');
+  pulse.className='pulse-circle';
+  pulse.style.left=x+'px';
+  pulse.style.top=y+'px';
+  document.querySelector('#page1').appendChild(pulse);
+  setTimeout(()=>pulse.remove(),1200);
+}
+
+// ===== Chuva de corações (Bootstrap Icons + paleta terracota) =====
+const terracotaPalette = [
+    
+  "#f2f2f2", // dourado queimado
+  "#d9b794", // dourado queimado
+  "#ea6445", // terracota claro
+  "#a3a89a", // marrom clássico
+  "#967761", // sienna
+  "#b24a35"  // vinho terroso
+];
+
+function createHeart() {
+  const heart = document.createElement('i');
+  heart.className = 'bi bi-heart-fill heart';
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.fontSize = (16 + Math.random()*18) + 'px';
+  heart.style.animationDuration = (3 + Math.random()*3) + 's';
+
+  // cor aleatória da paleta terracota
+  const color = terracotaPalette[Math.floor(Math.random() * terracotaPalette.length)];
+  heart.style.color = color;
+
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(), 6000);
+}
+// gera corações em intervalos regulares
+setInterval(createHeart, 1400);
+
 // Inicial
 showPage(1);
