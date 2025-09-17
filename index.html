@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Convite Digital - Viviane & Thiago</title>
 
-  <!-- Tipografia e Ícones -->
+  <!-- Pré-conexão para fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Ícones Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-  <!-- Estilos -->
+  <!-- Estilos principais -->
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -79,8 +83,10 @@
     </div>
   </section>
 
-  <!-- GSAP + Script -->
+  <!-- Bibliotecas externas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="script.js"></script>
+
+  <!-- Script principal (carregado após o DOM) -->
+  <script src="script.js" defer></script>
 </body>
 </html>
